@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Colors</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>R</th>
+      <th>G</th>
+      <th>B</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @colors.each do |color| %>
+      <tr>
+        <td><%= color.name %></td>
+        <td><%= color.r %></td>
+        <td><%= color.g %></td>
+        <td><%= color.b %></td>
+        <td><%= link_to 'Show', color %></td>
+        <td><%= link_to 'Edit', edit_color_path(color) %></td>
+        <td><%= link_to 'Destroy', color, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Color', new_color_path %>
