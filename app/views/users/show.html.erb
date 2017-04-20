@@ -10,7 +10,42 @@
   <%= @user.email %>
 </p>
 
+<strong>Color Schemes:</strong></br>
+<% if @user.schemes.empty? %>
+<p> No color schemes yet</p>
+<% end %>
+<% @user.schemes.each do |scheme| %>
+  <tr>
+    <% if !scheme.private || scheme.users.include?(current_user) %>
+      <td><%= link_to scheme.name, scheme %></td>
+      <% scheme.colors.each do |color| %>
+      <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
+      <% end %>
+    <% end %>
+  </tr>
+<% end %>
+
+<br><br>
+
+<% if @user != current_user %>
+  <p>Add Friend</p>
+<% end %>
+
 <% if @user == current_user %>
-  <%= link_to 'Edit', edit_user_path(@user) %>
+  <strong>Friends:</strong></br>
+  <% if @user.friends.empty? %>
+  <p> No friends :(</p>
+  <% end %>
+  <% @user.friends.each do |friend| %>
+    <tr>
+      <td><%= friend.name %></td>
+      <td><%= friend.email %></td>
+      <td><%= link_to 'Show', friend %></td>
+    </tr>
+  <% end %>
+<% end %>
+<br>
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user) %> |
 <% end %>
 <%= link_to 'Back', users_path %>

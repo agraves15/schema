@@ -1,0 +1,14 @@
+<nav class="nav-banner">
+  <a class="nav-btn" href="/">Home</a>
+  <a class="nav-btn" href="/users">Users</a>
+  <a class="nav-btn" href="/schemes">Color Schemes</a>
+  <% if logged_in? %>
+    <a class="nav-btn" href="/users/<%= current_user.id %>"><%= current_user.name %></a>
+    <a class="nav-btn" href="/logout">Log out</a>
+  <% else %>
+    <a class="nav-btn" href="/login">Log in</a>
+    <a class="nav-btn" href="/users/new">Sign up</a>
+  <% end %>
+  <span class="nav-sessions">
+  </span>
+</nav>

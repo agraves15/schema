@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:email])
-    if @user.nil? || @user.password != params[:password]
-      redirect_to '/login'
-    else
+    if !@user.nil? && @user.password == params[:password]
       session[:user_id] = @user.id
       redirect_to @user
+    else
+      redirect_to '/login', notice: 'Incorrect email or password.'
     end
   end
 

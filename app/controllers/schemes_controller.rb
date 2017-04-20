@@ -28,6 +28,7 @@ class SchemesController < ApplicationController
 
     respond_to do |format|
       if @scheme.save
+        current_user.schemes.append @scheme
         format.html { redirect_to @scheme, notice: 'Scheme was successfully created.' }
         format.json { render :show, status: :created, location: @scheme }
       else

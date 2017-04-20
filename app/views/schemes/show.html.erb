@@ -5,5 +5,19 @@
   <%= @scheme.name %>
 </p>
 
-<%= link_to 'Edit', edit_scheme_path(@scheme) %> |
+<p>
+  <strong><%= "Author".pluralize(@scheme.users.count) %>:</strong>
+  <% @scheme.users.each do |user| %>
+    <% if user == @scheme.users.last %>
+      <%= link_to user.name, user %>
+    <% else %>,
+      <%= link_to user.name, user %>,
+    <% end %>
+  <% end %>
+</p>
+
+<% if @scheme.users.include?(current_user) %>
+  <%= link_to 'Edit', edit_scheme_path(@scheme) %> |
+  <%= link_to 'Delete', @scheme, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<% end %>
 <%= link_to 'Back', schemes_path %>

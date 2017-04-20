@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  get 'welcome/index'
 
-  get 'sessions/create'
+  get '/' => 'welcome#index'
 
-  get 'sessions/destroy'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy'
 
   resources :colors
   resources :schemes
