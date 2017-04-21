@@ -13,11 +13,11 @@
   <tbody>
     <% @schemes.each do |scheme| %>
       <tr>
-        <% unless scheme.private %>
-          <td><%= scheme.name %></td>
-          <td><%= link_to 'Show', scheme %></td>
-          <td><%= link_to 'Edit', edit_scheme_path(scheme) %></td>
-          <td><%= link_to 'Destroy', scheme, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !scheme.private || scheme.users.include?(current_user) %>
+          <td><%= link_to scheme.name, scheme %></td>
+          <% scheme.colors.each do |color| %>
+            <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
+          <% end %>
         <% end %>
       </tr>
     <% end %>
