@@ -5,13 +5,11 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-    p current_user
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    p current_user
   end
 
   # GET /users/new
@@ -28,8 +26,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     @user.password = user_params[:password]
-    p user_params[:password]
-    p user_params[:password_confirmation]
 
     respond_to do |format|
       if @user.save
