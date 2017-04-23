@@ -16,6 +16,14 @@
   <% end %>
 </p>
 
+<p>
+  <strong>Colors:</strong>
+  <% @scheme.colors.each do |color| %>
+    <br>
+    <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
+  <% end %>
+</p>
+
 <% if @scheme.users.include?(current_user) %>
   <%= link_to 'Edit', edit_scheme_path(@scheme) %> |
   <%= link_to 'Delete', @scheme, method: :delete, data: { confirm: 'Are you sure?' } %> |

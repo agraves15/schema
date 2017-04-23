@@ -15,6 +15,7 @@ class SchemesController < ApplicationController
   # GET /schemes/new
   def new
     @scheme = Scheme.new
+    @color = Color.new
   end
 
   # GET /schemes/1/edit
@@ -24,7 +25,8 @@ class SchemesController < ApplicationController
   # POST /schemes
   # POST /schemes.json
   def create
-    @scheme = Scheme.new(scheme_params)
+    @scheme = Scheme.new(name: scheme_params[:name], private: scheme_params[:private], shared: scheme_params[:shared])
+    @scheme.add_color(scheme_params)
 
     respond_to do |format|
       if @scheme.save
@@ -71,6 +73,6 @@ class SchemesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def scheme_params
-    params.require(:scheme).permit(:name, :private, :shared)
+    params.require(:scheme).permit(:name, :private, :shared, color_attributes: [:name])
   end
 end

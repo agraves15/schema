@@ -1,4 +1,4 @@
-<%= form_for(@scheme) do |f| %>
+<%= simple_form_for(@scheme) do |f| %>
   <% if @scheme.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@scheme.errors.count, "error") %> prohibited this scheme from being saved:</h2>
@@ -23,6 +23,11 @@
     <%= f.label :shared %><br>
     <%= f.check_box :shared %>
   </div>
+  <div class="field">
+      <%= f.fields_for :color_attributes do |color| %>
+        <%= color.input :name, as: :minicolors %>
+      <% end %>
+    </div>
   <div class="actions">
     <%= f.submit %>
   </div>

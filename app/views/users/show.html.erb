@@ -21,11 +21,12 @@
       <% scheme.colors.each do |color| %>
         <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
       <% end %>
+      <br>
     <% end %>
   </tr>
 <% end %>
 
-<br><br>
+<br>
 
 <% if @user != current_user && logged_in? %>
   <p>Add Friend</p>
