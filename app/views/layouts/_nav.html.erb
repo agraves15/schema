@@ -7,13 +7,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Schema</a>
+      <a class="navbar-brand" href="/"><%= image_tag 'logo.png' %></a>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="/users">Users</a></li>
         <li><a href="/schemes">Color Schemes</a></li>
+        <span class="nav-sessions">
+        </span>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><a href="/users/<%= current_user.id %>"><%= current_user.name %></a></li>
           <li><a href="/logout">Log out</a></li>
@@ -21,8 +25,6 @@
           <li><a href="/login">Log in</a></li>
           <li><a href="/users/new">Sign up</a></li>
         <% end %>
-        <span class="nav-sessions">
-        </span>
       </ul>
     </div>
   </div>
