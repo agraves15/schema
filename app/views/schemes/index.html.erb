@@ -1,29 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Schemes</h1>
+<div class="container-fluid">
+  <div class="row">
+    <h1>Colors Schemes</h1>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <div class="row">
+    <div class="col-xs-6">
+      <h4>Name</h4>
+    </div>
+    <div class="col-xs-6">
+      <h4>Colors</h4>
+    </div>
+  </div>
 
-  <tbody>
-    <% @schemes.each do |scheme| %>
-      <tr>
-        <% if !scheme.private || scheme.users.include?(current_user) %>
-          <td><%= link_to scheme.name, scheme %></td>
+  <% @schemes.each do |scheme| %>
+    <% if !scheme.private || scheme.users.include?(current_user) %>
+      <div class="row">
+        <div class="col-xs-6">
+          <%= link_to scheme.name, scheme %>
+        </div>
+        <div class="col-xs-6">
           <% scheme.colors.each do |color| %>
-            <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
+            <%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %>
           <% end %>
-        <% end %>
-      </tr>
+        </div>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  <% end %>
 
-<br>
-
-<%= link_to 'New Scheme', new_scheme_path %>
+  <div class="row">
+    <%= link_to 'New Scheme', new_scheme_path %>
+  </div>
+</div>

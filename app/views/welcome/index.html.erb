@@ -1,4 +1,12 @@
-<h1>Welcome to Schema</h1>
-<% if logged_in? %>
-  Hi <%= current_user.name %>!
-<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <h1>Welcome to Schema</h1>
+  </div>
+  <% if logged_in? %>
+    <div class="row">
+      <h4>Hi <%= current_user.name %>!</h4>
+    </div>
+  <% end %>
+  <div class="row">
+  </div>
+</div>
