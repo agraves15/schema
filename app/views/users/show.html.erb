@@ -19,7 +19,7 @@
     <% if !scheme.private || scheme.users.include?(current_user) %>
       <td><%= link_to scheme.name, scheme %></td>
       <% scheme.colors.each do |color| %>
-        <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
+        <td><%= color.name %></td>
       <% end %>
       <br>
     <% end %>

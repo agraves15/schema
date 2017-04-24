@@ -20,25 +20,28 @@ pre {
 
 a {
   color: #000;
+  text-decoration: none;
 
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
+  &:hover, &:active, &:focus {
+    color: #7100D3;
+    text-decoration: none;
   }
 }
 
 .navbar-logo {
   width: 100px;
+}
+
+.col-sm-2 {
+  padding: 0px;
+
+  .well-lg {
+    height: 200px;
+  }
+}
+
+.well-sm {
+  margin: 0px;
 }
 
 #notice {

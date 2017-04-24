@@ -1,41 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <h1>Users</h1>
-  </div>
-
-  <div class="row">
-    <div class="col-xs-4">
-      <h4>Name</h4>
-    </div>
-    <div class="col-xs-4">
-      <h4>Email</h4>
-    </div>
-    <div class="col-xs-4">
-    </div>
-  </div>
-
-  <% @users.each do |user| %>
-    <div class="row">
-      <div class="col-xs-4">
-        <%= link_to user.name, user %>
-      </div>
-      <div class="col-xs-4">
-        <%= user.email %>
-      </div>
-      <div class="col-xs-4">
-        <% if user == current_user %>
-          <%= link_to 'Edit', edit_user_path(user) %> |
-          <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <h1>Users
+      <% unless logged_in? %>
+        <%= link_to new_user_path do %>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="new user" title="Create account"></span>
         <% end %>
-      </div>
-    </div>
-  <% end %>
+      <% end %>
+    </h1>
+  </div>
 
-  <% unless logged_in? %>
+  <br>
+
+  <% @users.each_slice(4).to_a.each do |user_arr| %>
     <div class="row">
-      <%= link_to 'New User', new_user_path %>
+    <% user_arr.each do |user| %>
+      <div class="col-sm-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= link_to user.name, user %>
+              <div class="pull-right">
+              <% if user == current_user %>
+                <%= link_to edit_user_path(user) do %>
+                  <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit user" title="Edit account"></span>
+                <% end %>
+                <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                  <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete user" title="Delete account"></span>
+                <% end %>
+              <% end %>
+              </div>
+            </h3>
+          </div>
+          <div class="panel-body">
+            <%= user.email %><br>
+          </div>
+        </div>
+      </div>
+    <% end %>
     </div>
   <% end %>
 </div>

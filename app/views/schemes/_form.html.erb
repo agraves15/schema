@@ -25,7 +25,8 @@
   </div>
   <div class="field">
       <%= f.fields_for :color_attributes do |color| %>
-        <%= color.input :name, as: :minicolors %>
+        <%= color.input :name, as: :minicolors, input_html: {data: {
+          minicolors: {theme: :bootstrap, position: :right}}} %>
       <% end %>
     </div>
   <div class="actions">

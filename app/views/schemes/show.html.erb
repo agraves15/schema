@@ -1,31 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Name:</strong>
-  <%= @scheme.name %>
-</p>
+  <div class="row">
+    <p id="notice"><%= notice %></p>
+  </div>
 
-<p>
-  <strong><%= "Author".pluralize(@scheme.users.count) %>:</strong>
-  <% @scheme.users.each do |user| %>
-    <% if user == @scheme.users.last %>
-      <%= link_to user.name, user %>
-    <% else %>,
-      <%= link_to user.name, user %>,
+  <div class="row">
+    <h3><%= @scheme.name %></h3>
+  </div>
+
+  <div class="row">
+    <strong><%= "Author".pluralize(@scheme.users.count) %>:</strong>
+    <% @scheme.users.each do |user| %>
+      <% if user == @scheme.users.last %>
+        <%= link_to user.name, user %>
+      <% else %>
+        <%= link_to user.name, user %>,
+      <% end %>
     <% end %>
-  <% end %>
-</p>
+  </div>
 
-<p>
-  <strong>Colors:</strong>
-  <% @scheme.colors.each do |color| %>
-    <br>
-    <td><%= color.name %>, <%= color.r %>, <%= color.g %>, <%= color.b %></td>
-  <% end %>
-</p>
+  <br>
 
-<% if @scheme.users.include?(current_user) %>
-  <%= link_to 'Edit', edit_scheme_path(@scheme) %> |
-  <%= link_to 'Delete', @scheme, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<% end %>
-<%= link_to 'Back', schemes_path %>
+  <div class="row">
+    <% @scheme.colors.each do |color| %>
+      <div class="col-sm-2">
+        <%= color.name.upcase %>
+        <div class="well well-lg" style="background-color: <%= color.name %>;">
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @scheme.users.include?(current_user) %>
+    <%= link_to 'Edit', edit_scheme_path(@scheme) %> |
+    <%= link_to 'Delete', @scheme, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <% end %>
+  <%= link_to 'All Schemes', schemes_path %>
+
+</div>

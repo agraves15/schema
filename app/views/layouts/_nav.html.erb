@@ -14,6 +14,9 @@
       <ul class="nav navbar-nav">
         <li><a href="/users">Users</a></li>
         <li><a href="/schemes">Color Schemes</a></li>
+        <% if logged_in? %>
+          <li><a href="/schemes/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></li>
+        <% end %>
         <span class="nav-sessions">
         </span>
       </ul>

@@ -8,7 +8,7 @@ class Scheme < ActiveRecord::Base
 
   def add_color(scheme_params)
     return false if scheme_params[:color_attributes][:name].empty?
-    color = Color.new(name: scheme_params[:color_attributes][:name], r: 0, b: 0, g: 0)
+    color = Color.new(name: scheme_params[:color_attributes][:name])
     color.save
     colors.append color
   end

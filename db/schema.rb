@@ -15,9 +15,6 @@ ActiveRecord::Schema.define(version: 20170420192108) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
-    t.integer  "r"
-    t.integer  "g"
-    t.integer  "b"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
