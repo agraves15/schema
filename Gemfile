@@ -25,7 +25,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+# For making numbers into words
+gem 'to_words'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.10'
 

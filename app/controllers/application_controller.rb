@@ -8,6 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   helper_method def current_user
-    @user ||= User.find(session[:user_id]) if logged_in?
+    @current_user ||= User.find(session[:user_id]) if logged_in?
   end
 end

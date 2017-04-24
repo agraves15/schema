@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="panel-body">
-            <%= user.email %><br>
+            <%= user.name %> has made <%= user.schemes.count.to_words %> <%= "color scheme".pluralize(user.schemes.count) %>!
           </div>
         </div>
       </div>
