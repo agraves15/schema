@@ -4,10 +4,12 @@
   <div class="row">
     <h1>Color Schemes
       <%= link_to new_scheme_path do %>
-        <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="new color scheme" title="Create new color scheme"></span>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="new color scheme" data-toggle="tooltip" data-placement="bottom" title data-original-title="Create color scheme"></span>
       <% end %>
     </h1>
   </div>
+
+  <br>
 
   <% @schemes.each_slice(4).to_a.each do |scheme_arr| %>
     <div class="row">
@@ -16,7 +18,18 @@
         <div class="col-sm-3">
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title"><%= link_to scheme.name, scheme %></h3>
+              <h3 class="panel-title"><%= link_to scheme.name, scheme %>
+                <div class="pull-right">
+                <% if scheme.users.include?(current_user) %>
+                  <%= link_to edit_scheme_path(scheme) do %>
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit scheme" data-toggle="tooltip" data-placement="top" title data-original-title="Edit color scheme"></span>
+                  <% end %>
+                  <%= link_to scheme, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete scheme" data-toggle="tooltip" data-placement="top" title data-original-title="Delete color scheme"></span>
+                  <% end %>
+                <% end %>
+                </div>
+              </h3>
             </div>
             <div class="panel-body colors">
               <% scheme.colors.each do |color| %>
