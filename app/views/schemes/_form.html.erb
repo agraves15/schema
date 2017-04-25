@@ -24,7 +24,7 @@
     <%= f.check_box :shared %>
   </div>
   <div class="field">
-      <%= f.fields_for :color_attributes do |color| %>
+      <%= f.fields_for :colors do |color| %>
         <%= color.input :name, as: :minicolors, input_html: {data: {
           minicolors: {theme: :bootstrap, position: :right}}} %>
       <% end %>

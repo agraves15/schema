@@ -23,10 +23,21 @@
           <%= link_to @user, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete user" data-toggle="tooltip" data-placement="top" title data-original-title="Delete account"></span>
           <% end %>
-        <% else %>
-          <%= link_to current_user do %>
+        <% elsif !current_user.pending_friends.include?(@user) && !current_user.requested_friends.include?(@user) && !current_user.friends.include?(@user) %>
+          <%= link_to request_friend_url(@user), method: :post do %>
             <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="add friend" data-toggle="tooltip" data-placement="top" title data-original-title="Add friend"></span>
           <% end %>
+        <% elsif current_user.pending_friends.include?(@user) %>
+          <span class="glyphicon glyphicon-hourglass" aria-hidden="true" sr-only="friend requested" data-toggle="tooltip" data-placement="top" title data-original-title="Friend requested"></span>
+        <% elsif current_user.requested_friends.include?(@user) %>
+          <%= link_to accept_friend_url(@user), method: :post do %>
+            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true" sr-only="accept friend request" data-toggle="tooltip" data-placement="top" title data-original-title="Accept friend request"></span>
+          <% end %>
+            <%= link_to decline_friend_url(@user), method: :post do %>
+              <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" sr-only="decline friend request" data-toggle="tooltip" data-placement="top" title data-original-title="Decline friend request"></span>
+            <% end %>
+        <% elsif current_user.friends.include?(@user) %>
+          <span class="glyphicon glyphicon-heart" aria-hidden="true" sr-only="friends" data-toggle="tooltip" data-placement="top" title data-original-title="You are friends"></span>
         <% end %>
         </div>
       </div>
@@ -59,8 +70,7 @@
                 </div>
                 <div class="panel-body colors">
                   <% scheme.colors.each do |color| %>
-                    <div class="well well-sm" style="background-color: <%= color.name %>;"><%= color.name.upcase %>
-                    </div>
+                    <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name %>" style="background-color: <%= color.name %>;"></div>
                   <% end %>
                 </div>
               </div>
@@ -70,32 +80,59 @@
         </div>
       <% end %>
 
-      <% if @user != current_user && logged_in? %>
-        <h3>Add Friend</h3>
-      <% end %>
-
       <% if @user == current_user && logged_in? %>
-        <h3>Friends:</h3>
-        <% if @user.friends.empty? %>
-        <p>You don't have any friends yet!</p>
-        <% end %>
-        <% @user.friends.each_slice(4).to_a.each do |friend_arr| %>
-          <div class="row">
-            <% friend_arr.each do |friend| %>
-            <div class="col-sm-3">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title"><%= link_to friend.name, friend %>
-                  </h3>
-                </div>
-                <div class="panel-body">
-                  <%= friend.email %>
+        <div class="col-sm-6">
+          <h3>Friends:</h3>
+          <% if @user.friends.empty? %>
+          <p>You don't have any friends yet!</p>
+          <% end %>
+          <% @user.friends.each_slice(2).to_a.each do |friend_arr| %>
+            <div class="row">
+              <% friend_arr.each do |friend| %>
+              <div class="col-sm-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= link_to friend.name, friend %>
+                    </h3>
+                  </div>
+                  <div class="panel-body">
+                    <%= friend.email %>
+                  </div>
                 </div>
               </div>
+              <% end %>
             </div>
-            <% end %>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-sm-6">
+          <h3>Pending Friend Requests:</h3>
+          <% if @user.requested_friends.empty? %>
+            <p>You don't have any pending friend requests.</p>
+          <% end %>
+          <% @user.requested_friends.each_slice(2).to_a.each do |friend_arr| %>
+            <div class="row">
+              <% friend_arr.each do |request| %>
+              <div class="col-sm-6">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title"><%= link_to request.name, request %>
+                    </h3>
+                  </div>
+                  <div class="panel-body">
+                    <%= link_to accept_friend_url(request), method: :post do %>
+                      <span class="glyphicon glyphicon-ok-sign" aria-hidden="true" sr-only="accept friend request" data-toggle="tooltip" data-placement="bottom" title data-original-title="Accept friend request"></span>
+                    <% end %>
+                      <%= link_to decline_friend_url(request), method: :post do %>
+                        <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" sr-only="decline friend request" data-toggle="tooltip" data-placement="bottom" title data-original-title="Decline friend request"></span>
+                      <% end %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

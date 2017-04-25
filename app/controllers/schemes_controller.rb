@@ -15,7 +15,9 @@ class SchemesController < ApplicationController
   # GET /schemes/new
   def new
     @scheme = Scheme.new
-    @color = Color.new
+    6.times do
+      @scheme.colors.build
+    end
   end
 
   # GET /schemes/1/edit
@@ -26,7 +28,9 @@ class SchemesController < ApplicationController
   # POST /schemes.json
   def create
     @scheme = Scheme.new(name: scheme_params[:name], private: scheme_params[:private], shared: scheme_params[:shared])
-    @scheme.add_color(scheme_params)
+    (0..scheme_params[:colors_attributes].count - 1).each do |i|
+      @scheme.add_color(scheme_params, i)
+    end
 
     respond_to do |format|
       if @scheme.save
@@ -59,7 +63,7 @@ class SchemesController < ApplicationController
   def destroy
     @scheme.destroy
     respond_to do |format|
-      format.html { redirect_to schemes_url, notice: 'Scheme was successfully destroyed.' }
+      format.html { redirect_to schemes_url, notice: 'Scheme was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -73,6 +77,6 @@ class SchemesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def scheme_params
-    params.require(:scheme).permit(:name, :private, :shared, color_attributes: [:name])
+    params.require(:scheme).permit(:name, :private, :shared, colors_attributes: [:id, :name])
   end
 end

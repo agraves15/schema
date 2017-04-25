@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
   validates :name, :email, uniqueness: true
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
-  has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships, source: :user
+  # has_many :friendships, dependent: :destroy
+  # has_many :friends, through: :friendships, source: :user
   has_many :schemes_users, dependent: :destroy
   has_many :schemes, through: :schemes_users
+  has_friendship
 
   include BCrypt
 

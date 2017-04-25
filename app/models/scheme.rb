@@ -6,9 +6,9 @@ class Scheme < ActiveRecord::Base
   has_many :colors, through: :colors_schemes
   accepts_nested_attributes_for :colors
 
-  def add_color(scheme_params)
-    return false if scheme_params[:color_attributes][:name].empty?
-    color = Color.new(name: scheme_params[:color_attributes][:name])
+  def add_color(scheme_params, id)
+    return false if scheme_params[:colors_attributes]["#{id}"][:name].empty?
+    color = Color.new(name: scheme_params[:colors_attributes]["#{id}"][:name].upcase)
     color.save
     colors.append color
   end

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :request_friend, :accept_friend, :decline_friend]
 
   # GET /users
   # GET /users.json
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to @user, notice: 'Welcome to Schema!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -58,10 +58,34 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, notice: "Account was successfully deleted. We're sad to see you go!" }
       format.json { head :no_content }
     end
     reset_session
+  end
+
+  def request_friend
+    current_user.friend_request(@user)
+    respond_to do |format|
+      format.html { redirect_to @user, notice: 'Friend request sent.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def accept_friend
+    current_user.accept_request(@user)
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Friend request accepted.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def decline_friend
+    current_user.decline_request(@user)
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Friend request declined.' }
+      format.json { head :no_content }
+    end
   end
 
   private

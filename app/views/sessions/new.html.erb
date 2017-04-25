@@ -1,4 +1,9 @@
-<p id="error"><%= notice %></p>
+<div class="container">
+  <% unless notice.blank? %>
+    <div class="alert alert-danger" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
 
 <h1 id="log_in">Log In</h1>
 
@@ -11,3 +16,5 @@
   <br>
   <%= submit_tag 'Log in' %>
 <% end %>
+
+</div>

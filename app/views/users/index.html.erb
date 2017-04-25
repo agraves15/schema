@@ -1,6 +1,10 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
+  <% unless notice.blank? %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+
   <div class="row">
     <h1>Users
       <% unless logged_in? %>

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   delete '/logout' => 'sessions#destroy'
+
+  post '/users/:id/request' => 'users#request_friend', as: :request_friend
+  post '/users/:id/accept' => 'users#accept_friend', as: :accept_friend
+  post '/users/:id/decline' => 'users#decline_friend', as: :decline_friend
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

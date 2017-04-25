@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420192108) do
+ActiveRecord::Schema.define(version: 20170424190524) do
 
   create_table "colors", force: :cascade do |t|
     t.string   "name"
@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 20170420192108) do
   add_index "colors_schemes", ["scheme_id"], name: "index_colors_schemes_on_scheme_id"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "friendable_id"
+    t.string   "friendable_type"
     t.integer  "friend_id"
-    t.boolean  "is_pending"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blocker_id"
+    t.integer  "status"
   end
 
   create_table "schemes", force: :cascade do |t|

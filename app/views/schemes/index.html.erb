@@ -8,7 +8,7 @@
   <div class="row">
     <h1>Color Schemes
       <%= link_to new_scheme_path do %>
-        <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="new color scheme" data-toggle="tooltip" data-placement="bottom" title data-original-title="Create color scheme"></span>
+        <span class="glyphicon glyphicon-tint" aria-hidden="true" sr-only="new color scheme" data-toggle="tooltip" data-placement="bottom" title data-original-title="Create color scheme"></span>
       <% end %>
     </h1>
   </div>
@@ -37,8 +37,7 @@
             </div>
             <div class="panel-body colors">
               <% scheme.colors.each do |color| %>
-                <div class="well well-sm" style="background-color: <%= color.name %>;"><%= color.name.upcase %>
-                </div>
+                <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name %>" style="background-color: <%= color.name %>;"></div>
               <% end %>
             </div>
           </div>
