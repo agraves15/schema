@@ -1,5 +1,12 @@
-== README
+== Schema
 
-Schema, built with Ruby on Rails for my CIS196 final project, allows users to collaboratively create color schemes. Users can share schemes they create with friends, who can then edit them as they see fit.
+Schema[https://schemacolors.herokuapp.com/] allows users to collaboratively create color schemes. Users can share schemes they create with friends, who can then edit them as they see fit.
 
-It is currently still in development, but it will eventually be hosted on Heroku for anyone to use.
+= Framework
+Schema was built with Ruby on Rails for my CIS196 final project. It uses the following extra gems:
+* jquery-minicolors-rails[https://github.com/kostia/jquery-minicolors-rails] for color selection
+* simple_form[https://github.com/plataformatec/simple_form] for adding color selection to forms
+* has_friendship[https://github.com/sungwoncho/has_friendship] for friendship relationships between users
+* bcrypt[https://github.com/codahale/bcrypt-ruby] for passwords
+* bootstrap-sass[https://github.com/twbs/bootstrap-sass] for style
+* to_words[https://github.com/taimur-akhtar/to_words] for converting numbers into words

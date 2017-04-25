@@ -44,7 +44,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: 'Your account was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "Account was successfully deleted. We're sad to see you go!" }
+      format.html { redirect_to users_url, notice: "Your account was successfully deleted. We're sad to see you go!" }
       format.json { head :no_content }
     end
     reset_session
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
   def request_friend
     current_user.friend_request(@user)
     respond_to do |format|
-      format.html { redirect_to @user, notice: 'Friend request sent.' }
+      format.html { redirect_to @user, notice: 'Friend request sent to ' + @user.name + '.' }
       format.json { head :no_content }
     end
   end
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   def accept_friend
     current_user.accept_request(@user)
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Friend request accepted.' }
+      format.html { redirect_to :back, notice: @user.name + "'s friend request accepted." }
       format.json { head :no_content }
     end
   end
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
   def decline_friend
     current_user.decline_request(@user)
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Friend request declined.' }
+      format.html { redirect_to :back, notice: @user.name + "'s friend request declined." }
       format.json { head :no_content }
     end
   end

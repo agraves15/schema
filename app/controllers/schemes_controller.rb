@@ -35,7 +35,7 @@ class SchemesController < ApplicationController
     respond_to do |format|
       if @scheme.save
         current_user.schemes.append @scheme
-        format.html { redirect_to @scheme, notice: 'Scheme was successfully created.' }
+        format.html { redirect_to @scheme, notice: 'Color scheme was successfully created.' }
         format.json { render :show, status: :created, location: @scheme }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class SchemesController < ApplicationController
   def update
     respond_to do |format|
       if @scheme.update(scheme_params)
-        format.html { redirect_to @scheme, notice: 'Scheme was successfully updated.' }
+        format.html { redirect_to @scheme, notice: 'Color scheme was successfully updated.' }
         format.json { render :show, status: :ok, location: @scheme }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class SchemesController < ApplicationController
   def destroy
     @scheme.destroy
     respond_to do |format|
-      format.html { redirect_to schemes_url, notice: 'Scheme was successfully deleted.' }
+      format.html { redirect_to schemes_url, notice: 'Color scheme was successfully deleted.' }
       format.json { head :no_content }
     end
   end
