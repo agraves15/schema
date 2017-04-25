@@ -1,8 +1,8 @@
-== Schema
+= Schema
 
 Schema[https://schemacolors.herokuapp.com/] allows users to collaboratively create color schemes. Users can share schemes they create with friends, who can then edit them as they see fit.
 
-= Framework
+== Framework
 Schema was built with Ruby on Rails for my CIS196 final project. It uses the following extra gems:
 * jquery-minicolors-rails[https://github.com/kostia/jquery-minicolors-rails] for color selection
 * simple_form[https://github.com/plataformatec/simple_form] for adding color selection to forms
