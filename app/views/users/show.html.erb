@@ -23,20 +23,20 @@
           <%= link_to @user, method: :delete, data: { confirm: 'Are you sure?' } do %>
             <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete user" data-toggle="tooltip" data-placement="top" title data-original-title="Delete account"></span>
           <% end %>
-        <% elsif !current_user.pending_friends.include?(@user) && !current_user.requested_friends.include?(@user) && !current_user.friends.include?(@user) %>
+        <% elsif logged_in? && !current_user.pending_friends.include?(@user) && !current_user.requested_friends.include?(@user) && !current_user.friends.include?(@user) %>
           <%= link_to request_friend_url(@user), method: :post do %>
             <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="add friend" data-toggle="tooltip" data-placement="top" title data-original-title="Add friend"></span>
           <% end %>
-        <% elsif current_user.pending_friends.include?(@user) %>
+        <% elsif logged_in? && current_user.pending_friends.include?(@user) %>
           <span class="glyphicon glyphicon-hourglass" aria-hidden="true" sr-only="friend requested" data-toggle="tooltip" data-placement="top" title data-original-title="Friend requested"></span>
-        <% elsif current_user.requested_friends.include?(@user) %>
+        <% elsif logged_in? && current_user.requested_friends.include?(@user) %>
           <%= link_to accept_friend_url(@user), method: :post do %>
             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true" sr-only="accept friend request" data-toggle="tooltip" data-placement="top" title data-original-title="Accept friend request"></span>
           <% end %>
             <%= link_to decline_friend_url(@user), method: :post do %>
               <span class="glyphicon glyphicon-remove-sign" aria-hidden="true" sr-only="decline friend request" data-toggle="tooltip" data-placement="top" title data-original-title="Decline friend request"></span>
             <% end %>
-        <% elsif current_user.friends.include?(@user) %>
+        <% elsif logged_in? && current_user.friends.include?(@user) %>
           <span class="glyphicon glyphicon-heart" aria-hidden="true" sr-only="friends" data-toggle="tooltip" data-placement="top" title data-original-title="You are friends"></span>
         <% end %>
         </div>
