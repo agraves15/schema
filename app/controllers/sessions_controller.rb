@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
       respond_to do |format|
         if !@user.requested_friends.empty?
-          format.html { redirect_to @user, notice: 'You have ' + @user.requested_friends.count.to_words + ' friend requests'.pluralize(@user.requested_friends.count) + '.' }
+          format.html { redirect_to @user, notice: 'You have ' + @user.requested_friends.count.to_words + ' friend request'.pluralize(@user.requested_friends.count) + '.' }
           format.json { head :no_content }
         else
           format.html { redirect_to @user }
