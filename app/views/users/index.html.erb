@@ -23,7 +23,8 @@
       <div class="col-sm-3">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <div class="panel-title"><%= link_to user.name, user %>
+            <div class="panel-title">
+              <%= link_to user.name, user %>
               <div class="pull-right">
               <% if user == current_user %>
                 <%= link_to edit_user_path(user) do %>

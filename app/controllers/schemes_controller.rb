@@ -31,6 +31,9 @@ class SchemesController < ApplicationController
     (0..scheme_params[:colors_attributes].count - 1).each do |i|
       @scheme.add_color(scheme_params, i)
     end
+    (0..scheme_params[:users_attributes].count - 1).each do |i|
+      @scheme.add_user(scheme_params, i)
+    end
 
     respond_to do |format|
       if @scheme.save
@@ -77,6 +80,6 @@ class SchemesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def scheme_params
-    params.require(:scheme).permit(:name, :private, :shared, colors_attributes: [:id, :name])
+    params.require(:scheme).permit(:name, :private, :shared, colors_attributes: [:id, :name], users_attributes: [:id, :name])
   end
 end

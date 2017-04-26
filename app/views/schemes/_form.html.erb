@@ -16,13 +16,29 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :private %><br>
+    <%= f.label :private %>
     <%= f.check_box :private %>
   </div>
   <div class="field">
-    <%= f.label :shared %><br>
+    <%= f.label :shared %>
     <%= f.check_box :shared %>
   </div>
+  <% unless current_user.friends.nil? %>
+    <div class="field">
+      <% i = 0 %>
+      <%= f.fields_for :users, current_user.friends do |user| %>
+        <%= user.label :name, current_user.friends[i].name %>
+        <% p @scheme.users.include?(current_user.friends[i]) %>
+        <% if @scheme.users.include?(current_user.friends[i]) %>
+          <%= user.input_field :name, as: :boolean, input_html: { checked: true } %>
+        <% else %>
+          <%= user.input_field :name, as: :boolean %>
+        <% end %>
+        <% i = i + 1 %>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
   <div class="field">
       <%= f.fields_for :colors do |color| %>
         <%= color.input :name, as: :minicolors, input_html: {data: {

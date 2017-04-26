@@ -5,11 +5,18 @@ class Scheme < ActiveRecord::Base
   has_many :colors_schemes, dependent: :destroy
   has_many :colors, through: :colors_schemes
   accepts_nested_attributes_for :colors
+  accepts_nested_attributes_for :users
 
   def add_color(scheme_params, id)
-    return false if scheme_params[:colors_attributes]["#{id}"][:name].empty?
-    color = Color.new(name: scheme_params[:colors_attributes]["#{id}"][:name].upcase)
+    return if scheme_params[:colors_attributes][id.to_s][:name].empty?
+    color = Color.new(name: scheme_params[:colors_attributes][id.to_s][:name].upcase)
     color.save
     colors.append color
+  end
+
+  def add_user(scheme_params, id)
+    return if scheme_params[:users_attributes][id.to_s][:name].to_i.zero?
+    share = User.find(scheme_params[:users_attributes][id.to_s][:id])
+    users.append share
   end
 end
