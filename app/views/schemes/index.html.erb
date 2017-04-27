@@ -11,7 +11,7 @@
 
   <br>
 
-  <% @schemes.each_slice(4).to_a.each do |scheme_arr| %>
+  <% @schemes.reverse.each_slice(4).to_a.each do |scheme_arr| %>
     <div class="row">
     <% scheme_arr.each do |scheme| %>
       <% if !scheme.private || scheme.users.include?(current_user) %>
