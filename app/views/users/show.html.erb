@@ -47,6 +47,7 @@
       <h3><%= @user.name %>'s Color Schemes:</h3>
       <% if @user.schemes.empty? %>
         <p><%= @user.name %> has not made any color schemes yet!</p>
+        <br>
       <% end %>
       <% @user.schemes.each_slice(4).to_a.each do |scheme_arr| %>
         <div class="row">

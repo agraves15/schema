@@ -1,21 +1,21 @@
 body {
   background-color: #fff;
   color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-family: 'Muli', helvetica, sans-serif;
+  font-size: 14px;
   line-height: 18px;
 }
 
 p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-family: 'Muli', helvetica, sans-serif;
+  font-size: 14px;
   line-height: 18px;
 }
 
 pre {
   background-color: #eee;
   padding: 10px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 a {
@@ -63,7 +63,7 @@ a {
 }
 
 .form-label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -87,7 +87,7 @@ a {
     text-align: left;
     font-weight: bold;
     padding: 5px 5px 5px 15px;
-    font-size: 12px;
+    font-size: 13px;
     margin: -7px;
     margin-bottom: 0px;
     background-color: #c00;
@@ -95,7 +95,7 @@ a {
   }
 
   ul li {
-    font-size: 12px;
+    font-size: 13px;
     list-style: square;
   }
 }
