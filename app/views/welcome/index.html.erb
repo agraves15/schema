@@ -20,13 +20,14 @@
   <br>
 
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <div class="panel-title">
+    <div class="panel-heading all">
+      <div class="panel-title all">
         Recent Color Schemes
       </div>
     </div>
 
     <div class="panel-body outer">
+      <% display = [] %>
       <% display = Scheme.all.reverse %>
         <% display.each do |scheme| %>
           <% if scheme.private && !scheme.users.include?(current_user) %>

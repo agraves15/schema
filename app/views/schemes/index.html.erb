@@ -5,38 +5,46 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <h1>Color Schemes</h1>
-  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading all">
+      <div class="panel-title all">
+        Color Schemes
+        <div class="pull-right">
+          <a href="/schemes/new"><span class="glyphicon glyphicon-plus" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title data-original-title="Create color scheme"></span></a>
+        </div>
+      </div>
+    </div>
 
-  <br>
+    <div class="panel-body outer">
+      <% display = [] %>
+      <% display = Scheme.all.reverse %>
+        <% display.each do |scheme| %>
+          <% if scheme.private && !scheme.users.include?(current_user) %>
+            <% display.delete scheme %>
+          <% end %>
+        <% end %>
+      <% display.each_slice(4).to_a.each do |scheme_arr| %>
+        <div class="row">
+          <% scheme_arr.each do |scheme| %>
+            <div class="col-sm-3">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <div class="panel-title">
+                    <%= link_to scheme.name, scheme %>
+                  </div>
+                </div>
 
-  <% display = Scheme.all.reverse %>
-    <% display.each do |scheme| %>
-      <% if scheme.private && !scheme.users.include?(current_user) %>
-        <% display.delete scheme %>
-      <% end %>
-    <% end %>
-  <% display.first(8).each_slice(4).to_a.each do |scheme_arr| %>
-    <div class="row">
-      <% scheme_arr.each do |scheme| %>
-        <div class="col-sm-3">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <%= link_to scheme.name, scheme %>
+                <div class="panel-body colors">
+                  <% scheme.colors.each do |color| %>
+                    <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name.upcase %>" style="background-color: <%= color.name.upcase %>;"></div>
+                  <% end %>
+                </div>
               </div>
             </div>
-
-            <div class="panel-body colors">
-              <% scheme.colors.each do |color| %>
-                <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name.upcase %>" style="background-color: <%= color.name.upcase %>;"></div>
-              <% end %>
-            </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
-  <% end %>
+  </div>
 
 </div>

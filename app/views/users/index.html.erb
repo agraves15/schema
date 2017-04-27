@@ -5,38 +5,44 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <h1>Users</h1>
-  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading all">
+      <div class="panel-title all">
+        Users
+      </div>
+    </div>
 
-  <br>
-
-  <% @users.each_slice(4).to_a.each do |user_arr| %>
-    <div class="row">
-    <% user_arr.each do |user| %>
-      <div class="col-sm-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="panel-title">
-              <%= link_to user.name, user %>
-              <div class="pull-right">
-              <% if user == current_user %>
-                <%= link_to edit_user_path(user) do %>
-                  <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit user" data-toggle="tooltip" data-placement="top" title data-original-title="Edit account"></span>
-                <% end %>
-                <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                  <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete user" data-toggle="tooltip" data-placement="top" title data-original-title="Delete account"></span>
-                <% end %>
-              <% end %>
+    <div class="panel-body outer">
+      <% @users.each_slice(4).to_a.each do |user_arr| %>
+        <div class="row">
+        <% user_arr.each do |user| %>
+          <div class="col-sm-3">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-title">
+                  <%= link_to user.name, user %>
+                  <div class="pull-right">
+                  <% if user == current_user %>
+                    <%= link_to edit_user_path(user) do %>
+                      <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit user" data-toggle="tooltip" data-placement="top" title data-original-title="Edit account"></span>
+                    <% end %>
+                    <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete user" data-toggle="tooltip" data-placement="top" title data-original-title="Delete account"></span>
+                    <% end %>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <%= user.name %> has made <%= user.schemes.count.to_words %> <%= "color scheme".pluralize(user.schemes.count) %>!
               </div>
             </div>
           </div>
-          <div class="panel-body">
-            <%= user.name %> has made <%= user.schemes.count.to_words %> <%= "color scheme".pluralize(user.schemes.count) %>!
-          </div>
+        <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
     </div>
-  <% end %>
+
+  </div>
+
 </div>
