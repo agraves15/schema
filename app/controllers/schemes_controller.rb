@@ -88,10 +88,7 @@ class SchemesController < ApplicationController
   end
 
   def unshare_with_user
-    p 'UNSHARING'
-    p params[:unshare_with]
     user = User.find(params[:unshare_with])
-    p user
     @scheme.remove_user(user)
     respond_to do |format|
       format.html { redirect_to share_scheme_url, notice: user.name + ' was successfully unshared from this color scheme.' }
