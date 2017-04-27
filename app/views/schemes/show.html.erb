@@ -15,11 +15,13 @@
           <% end %>
         </div>
         <%= @scheme.name %>
-        <% p @scheme.users %>
         <div class="pull-right">
           <% if @scheme.users.include?(current_user) %>
             <%= link_to edit_scheme_path(@scheme) do %>
               <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit color scheme" data-toggle="tooltip" data-placement="top" title data-original-title="Edit color scheme"></span>
+            <% end %>
+            <%= link_to share_scheme_path(@scheme) do %>
+              <span class="glyphicon glyphicon-user" aria-hidden="true" sr-only="share color scheme" data-toggle="tooltip" data-placement="top" title data-original-title="Share color scheme"></span>
             <% end %>
             <%= link_to @scheme, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="delete color scheme" data-toggle="tooltip" data-placement="top" title data-original-title="Delete color scheme"></span>

@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <div class="pull-left">
+          <%= link_to scheme_path do %>
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to all schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to all color schemes"></span>
+          <% end %>
+        </div>
+        Share with your friends
+    </div>
+  </div>
+  <div class="panel-body">
+    <% current_user.friends.each_slice(4).to_a.each do |friend_arr| %>
+      <div class="row">
+      <% friend_arr.each do |friend| %>
+        <div class="col-sm-3">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <%= link_to friend.name, friend %>
+                <div class="pull-right">
+                  <% if @scheme.users.include?(friend) %>
+                    <%= link_to unshare_path(unshare_with: friend), method: :post do %>
+                      <span class="glyphicon glyphicon-remove" aria-hidden="true" sr-only="unshare with this user" data-toggle="tooltip" data-placement="top" title data-original-title="Unshare with <%= friend.name %>"></span>
+                    <% end %>
+                  <% else %>
+                    <%= link_to share_with_user_path(share_with: friend), method: :post do %>
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true" sr-only="share with this user" data-toggle="tooltip" data-placement="top" title data-original-title="Share with <%= friend.name %>"></span>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="panel-body">
+              <% if @scheme.users.include?(friend) %>
+                <%= friend.name %> is currently shared on this scheme!
+              <% else %>
+                <%= friend.name %> is not yet shared on this scheme.
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>

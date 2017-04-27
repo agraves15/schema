@@ -1,5 +1,5 @@
 class SchemesController < ApplicationController
-  before_action :set_scheme, only: [:show, :edit, :update, :destroy]
+  before_action :set_scheme, only: [:show, :edit, :update, :destroy, :share, :share_with_user, :unshare_with_user]
 
   # GET /schemes
   # GET /schemes.json
@@ -31,9 +31,9 @@ class SchemesController < ApplicationController
     (0..scheme_params[:colors_attributes].count - 1).each do |i|
       @scheme.add_color(scheme_params, i)
     end
-    (0..scheme_params[:users_attributes].count - 1).each do |i|
-      @scheme.add_user(scheme_params, i)
-    end
+    # (0..scheme_params[:users_attributes].count - 1).each do |i|
+    #   @scheme.add_user(scheme_params, i)
+    # end
 
     respond_to do |format|
       if @scheme.save
@@ -71,6 +71,31 @@ class SchemesController < ApplicationController
     end
   end
 
+  def share
+    render :share
+  end
+
+  def share_with_user
+    user = User.find(params[:share_with])
+    @scheme.add_user(user)
+    respond_to do |format|
+      format.html { redirect_to share_scheme_url, notice: 'Color scheme was successfully shared with ' + user.name + '.' }
+      format.json { head :no_content }
+    end
+  end
+
+  def unshare_with_user
+    p 'UNSHARING'
+    p params[:unshare_with]
+    user = User.find(params[:unshare_with])
+    p user
+    @scheme.remove_user(user)
+    respond_to do |format|
+      format.html { redirect_to share_scheme_url, notice: user.name + ' was successfully unshared from this color scheme.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -80,6 +105,6 @@ class SchemesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def scheme_params
-    params.require(:scheme).permit(:name, :private, :shared, colors_attributes: [:id, :name], users_attributes: [:id, :name])
+    params.require(:scheme).permit(:name, :private, :shared, colors_attributes: [:id, :name])
   end
 end
