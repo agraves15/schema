@@ -4,7 +4,7 @@
       <%= notice %>
     </div>
   <% end %>
-  
+
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
@@ -44,9 +44,9 @@
             </div>
             <div class="panel-body">
               <% if @scheme.users.include?(friend) %>
-                <%= friend.name %> is currently shared on this scheme!
+                <%= friend.name %> is currently shared on this color scheme!
               <% else %>
-                <%= friend.name %> is not yet shared on this scheme.
+                <%= friend.name %> is not yet shared on this color scheme.
               <% end %>
             </div>
           </div>

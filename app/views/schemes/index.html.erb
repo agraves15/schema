@@ -11,8 +11,8 @@
 
   <br>
 
+  <div class="row">
   <% @schemes.reverse.each_slice(4).to_a.each do |scheme_arr| %>
-    <div class="row">
     <% scheme_arr.each do |scheme| %>
       <% if !scheme.private || scheme.users.include?(current_user) %>
         <div class="col-sm-3">
@@ -37,14 +37,14 @@
 
             <div class="panel-body colors">
               <% scheme.colors.each do |color| %>
-                <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name %>" style="background-color: <%= color.name %>;"></div>
+                <div class="well small" data-toggle="tooltip" data-placement="bottom" title data-original-title="<%= color.name.upcase %>" style="background-color: <%= color.name.upcase %>;"></div>
               <% end %>
             </div>
           </div>
         </div>
       <% end %>
     <% end %>
-    </div>
   <% end %>
+  </div>
 
 </div>
