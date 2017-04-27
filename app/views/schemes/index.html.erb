@@ -16,8 +16,7 @@
     </div>
 
     <div class="panel-body outer">
-      <% display = [] %>
-      <% display = Scheme.all.reverse %>
+      <% display = Scheme.all.sort_by { |scheme| scheme.id }.reverse %>
         <% display.each do |scheme| %>
           <% if scheme.private && !scheme.users.include?(current_user) %>
             <% display.delete scheme %>

@@ -49,7 +49,7 @@
         <p><%= @user.name %> has not made any color schemes yet!</p>
         <br>
       <% end %>
-      <% @user.schemes.reverse.each_slice(4).to_a.each do |scheme_arr| %>
+      <% @user.schemes.sort_by { |scheme| scheme.id }.reverse.each_slice(4).to_a.each do |scheme_arr| %>
         <div class="row">
         <% scheme_arr.each do |scheme| %>
           <% if !scheme.private || scheme.users.include?(current_user) %>
