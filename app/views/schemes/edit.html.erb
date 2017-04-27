@@ -1,20 +1,43 @@
-<div class="container">
-  <div class="col-sm-6 col-sm-push-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <div class="pull-left">
-            <%= link_to @scheme do %>
-              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to color schemes"></span>
-            <% end %>
+<% if @scheme.users.include?(current_user) %>
+  <div class="container">
+    <div class="col-sm-6 col-sm-push-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="pull-left">
+              <%= link_to @scheme do %>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to color schemes"></span>
+              <% end %>
+            </div>
+            Edit Color Scheme
           </div>
-          Edit Color Scheme
         </div>
-      </div>
 
-      <div class="panel-body">
-        <%= render 'form' %>
+        <div class="panel-body">
+          <%= render 'form' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <div class="col-sm-6 col-sm-push-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="pull-left">
+              <%= link_to schemes_path do %>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to all color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to all color schemes"></span>
+              <% end %>
+            </div>
+            Hm...
+          </div>
+        </div>
+
+        <div class="panel-body">
+          Looks like you're trying to edit a color scheme that you don't have access to. You're not allowed to do that!
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

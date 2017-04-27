@@ -4,7 +4,6 @@
       <% @user.errors.full_messages.each do |message| %>
         <%= message %><br>
       <% end %>
-      </ul>
     </div>
   <% end %>
 
@@ -26,6 +25,6 @@
       <%= f.password_field :password_confirmation, class: 'form-control' %>
     </div>
 
-    <%= submit_tag 'Sign Up', class: 'btn btn-default' %>
+    <%= submit_tag 'Submit', class: 'btn btn-default' %>
   </div>
 <% end %>

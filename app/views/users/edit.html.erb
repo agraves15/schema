@@ -1,20 +1,43 @@
-<div class="container">
-  <div class="col-sm-6 col-sm-push-3">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <div class="panel-title">
-          <div class="pull-left">
-            <%= link_to @user do %>
-              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to profile" data-toggle="tooltip" data-placement="top" title data-original-title="Back to profile"></span>
-            <% end %>
+<% if current_user == @user %>
+  <div class="container">
+    <div class="col-sm-6 col-sm-push-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="pull-left">
+              <%= link_to @user do %>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to profile" data-toggle="tooltip" data-placement="top" title data-original-title="Back to profile"></span>
+              <% end %>
+            </div>
+            Edit Account
           </div>
-          Edit Account
         </div>
-      </div>
 
-      <div class="panel-body">
-        <%= render 'form' %>
+        <div class="panel-body">
+          <%= render 'form' %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% else %>
+  <div class="container">
+    <div class="col-sm-6 col-sm-push-3">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <div class="pull-left">
+              <%= link_to users_path do %>
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to all users" data-toggle="tooltip" data-placement="top" title data-original-title="Back to all users"></span>
+              <% end %>
+            </div>
+            Hm...
+          </div>
+        </div>
+
+        <div class="panel-body">
+          Looks like you're trying to edit an account that's not your own. You're not allowed to do that!
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

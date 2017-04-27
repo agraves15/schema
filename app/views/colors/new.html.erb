@@ -1,5 +1,20 @@
-<h1>New Color</h1>
+<div class="container">
+  <div class="col-sm-6 col-sm-push-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <div class="pull-left">
+            <%= link_to schemes_path do %>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to all color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to all color schemes"></span>
+            <% end %>
+          </div>
+          Nothing to see here!
+        </div>
+      </div>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', colors_path %>
+      <div class="panel-body">
+        Please return to all color schemes.
+      </div>
+    </div>
+  </div>
+</div>
