@@ -41,6 +41,9 @@ class SchemesController < ApplicationController
         format.html { redirect_to @scheme, notice: 'Color scheme was successfully created.' }
         format.json { render :show, status: :created, location: @scheme }
       else
+        6.times do
+          @scheme.colors.build
+        end
         format.html { render :new }
         format.json { render json: @scheme.errors, status: :unprocessable_entity }
       end

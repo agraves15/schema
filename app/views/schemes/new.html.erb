@@ -1,13 +1,20 @@
 <div class="container">
-  <div class="row">
-    <h1>New Scheme</h1>
-  </div>
+  <div class="col-sm-6 col-sm-push-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <div class="pull-left">
+            <%= link_to schemes_path do %>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="all color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="All color schemes"></span>
+            <% end %>
+          </div>
+          Create Color Scheme
+        </div>
+      </div>
 
-  <div class="row">
-    <%= render 'form' %>
-  </div>
-
-  <div class="row">
-    <%= link_to 'Back', schemes_path %>
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+    </div>
   </div>
 </div>

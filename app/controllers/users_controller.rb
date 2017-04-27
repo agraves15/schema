@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'Welcome to Schema!' }
+        format.html { redirect_to @user, notice: 'Welcome to Schema, ' + @user.name + '!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: "Your account was successfully deleted. We're sad to see you go!" }
+      format.html { redirect_to '/', notice: "Your account was successfully deleted. We're sad to see you go!" }
       format.json { head :no_content }
     end
     reset_session

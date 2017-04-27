@@ -4,8 +4,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(email: params[:email])
-    if !@user.nil? && @user.password == params[:password]
+    @user = User.find_by(email: params[:session][:email])
+    if !@user.nil? && @user.password == params[:session][:password]
       session[:user_id] = @user.id
 
       respond_to do |format|

@@ -1,20 +1,35 @@
 <div class="container">
-  <% unless notice.blank? %>
-    <div class="alert alert-danger" role="alert">
-      <%= notice %>
+  <div class="col-sm-6 col-sm-push-3">
+    <% unless notice.blank? %>
+      <div class="alert alert-danger" role="alert">
+        <%= notice %>
+      </div>
+    <% end %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          Log In
+        </div>
+      </div>
+
+      <div class="panel-body">
+        <%= form_for(:session, url: login_path) do |f| %>
+
+          <div class="col-sm-6 col-sm-push-3">
+            <div class="form-group">
+              <%= f.label :email, class: 'form-label' %><br>
+              <%= f.text_field :email, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= f.label :password, class: 'form-label' %><br>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <%= f.submit 'Log In', class: 'btn btn-default' %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-<h1 id="log_in">Log In</h1>
-
-<%= form_tag url: login_path do %>
-  <%= label_tag :email %><br>
-  <%= text_field_tag :email %>
-  <br>
-  <%= label_tag :password %><br>
-  <%= password_field_tag :password %>
-  <br>
-  <%= submit_tag 'Log in' %>
-<% end %>
-
+  </div>
 </div>

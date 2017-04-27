@@ -1,13 +1,20 @@
 <div class="container">
-  <div class="row">
-    <h1>Edit Account</h1>
-  </div>
+  <div class="col-sm-6 col-sm-push-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <div class="pull-left">
+            <%= link_to @user do %>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to profile" data-toggle="tooltip" data-placement="top" title data-original-title="Back to profile"></span>
+            <% end %>
+          </div>
+          Edit Account
+        </div>
+      </div>
 
-  <div class="row">
-    <%= render 'form' %>
-  </div>
-
-  <div class="row">
-    <%= link_to 'Back to Profile', @user %>
+      <div class="panel-body">
+        <%= render 'form' %>
+      </div>
+    </div>
   </div>
 </div>

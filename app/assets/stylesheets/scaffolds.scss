@@ -58,18 +58,17 @@ a {
   }
 }
 
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
 #notice {
   color: green;
 }
 
 #error {
   color: red;
-}
-
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
 }
 
 #error_explanation {

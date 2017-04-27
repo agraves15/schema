@@ -1,35 +1,46 @@
 <%= simple_form_for(@scheme) do |f| %>
   <% if @scheme.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@scheme.errors.count, "error") %> prohibited this scheme from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger" role="alert">
       <% @scheme.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <%= message %><br>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :private %>
-    <%= f.check_box :private %>
-  </div>
-  <div class="field">
-    <%= f.label :shared %>
-    <%= f.check_box :shared %>
-  </div>
-  <div class="field">
-      <%= f.fields_for :colors do |color| %>
-        <%= color.input :name, as: :minicolors, input_html: {data: {
-          minicolors: {theme: :bootstrap, position: :right}}} %>
-      <% end %>
+  <script type="text/javascript">
+    var bootstrapColorpicker = function() {
+      $('[data-minicolors]').each(function(i, elem) {
+        var input = $(this);
+        input.minicolors(input.data('minicolors'));
+      });
+    };
+
+    $(bootstrapColorpicker);
+    $(document).on('page:load', bootstrapColorpicker);
+  </script>
+
+  <div class="form-group row">
+    <div class="col-sm-6 col-sm-push-3">
+      <p class="form-label">Name:</p>
+      <%= f.text_field :name, class: 'form-control' %>
     </div>
-  <div class="actions">
-    <%= f.submit %>
   </div>
+  <div class="form-group row">
+    <%= f.check_box :private %>
+    <%= f.label :make_this_color_scheme_private %>
+  </div>
+  <div class="row">
+    <p class="form-label">Choose colors:</p>
+    <div class="form-group">
+      <div class="col-sm-6 col-sm-push-3">
+        <%= f.fields_for :colors do |color| %>
+          <%= color.input :name, as: :minicolors, input_html: {data: {
+              minicolors: {theme: :bootstrap, position: :left}}}, label: false %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <%= submit_tag 'Create', class: 'btn btn-default' %>
 <% end %>

@@ -1,12 +1,11 @@
 <div class="container">
-  <div class="row">
-    <h1>Welcome to Schema</h1>
-  </div>
   <% if logged_in? %>
-    <div class="row">
-      <h4>Hi <%= current_user.name %>!</h4>
+    <div class="alert alert-info" role="alert">
+      Hi <%= current_user.name %>!
     </div>
   <% end %>
+
   <div class="row">
+    <h1>Welcome to Schema</h1>
   </div>
 </div>
