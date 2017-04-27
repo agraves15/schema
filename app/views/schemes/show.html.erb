@@ -14,7 +14,20 @@
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" sr-only="back to all color schemes" data-toggle="tooltip" data-placement="top" title data-original-title="Back to all color schemes"></span>
           <% end %>
         </div>
-        <%= @scheme.name %>
+        <%= @scheme.name %> by
+        <% if @scheme.users.count == 1 %>
+          <%= link_to @scheme.users.first.name, @scheme.users.first %>
+        <% elsif @scheme.users.count == 2 %>
+          <%= link_to @scheme.users.first.name, @scheme.users.first %> and <%= link_to @scheme.users.last.name, @scheme.users.last %>
+        <% else %>
+          <% @scheme.users.each do |user| %>
+            <% if user == @scheme.users.last %>
+              and <%= link_to user.name, user %>
+            <% else %>
+              <%= link_to user.name, user %>,
+            <% end %>
+          <% end %>
+        <% end %>
         <div class="pull-right">
           <% if @scheme.users.include?(current_user) %>
             <%= link_to edit_scheme_path(@scheme) do %>
@@ -32,19 +45,7 @@
     </div>
 
     <div class="panel-body">
-      <div class="row">
-        <strong><%= "Author".pluralize(@scheme.users.count) %>:</strong>
-        <% @scheme.users.each do |user| %>
-          <% if user == @scheme.users.last %>
-            <%= link_to user.name, user %>
-          <% else %>
-            <%= link_to user.name, user %>,
-          <% end %>
-        <% end %>
-      </div>
-
       <br>
-
       <div class="row colors">
         <% @scheme.colors.each do |color| %>
           <div class="col-sm-2">

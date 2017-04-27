@@ -1,4 +1,10 @@
 <div class="container">
+  <% unless notice.blank? %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  
   <div class="panel panel-default">
     <div class="panel-heading">
       <div class="panel-title">
@@ -10,7 +16,11 @@
         Share with your friends
     </div>
   </div>
-  <div class="panel-body">
+  <div class="panel-body outer">
+    <% if current_user.friends.empty? %>
+      <p>You don't have any friends yet!</p>
+      <br>
+    <% end %>
     <% current_user.friends.each_slice(4).to_a.each do |friend_arr| %>
       <div class="row">
       <% friend_arr.each do |friend| %>
