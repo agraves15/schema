@@ -1,4 +1,4 @@
-<% if current_user == @user %>
+<% if current_user == @user || (logged_in? && current_user.id == 1) %>
   <div class="container">
     <div class="col-sm-6 col-sm-push-3">
       <div class="panel panel-default">

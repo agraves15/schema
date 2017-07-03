@@ -18,7 +18,7 @@
     <div class="panel-body outer">
       <% display = Scheme.all.sort_by { |scheme| scheme.id }.reverse %>
         <% display.each do |scheme| %>
-          <% if scheme.private && !scheme.users.include?(current_user) %>
+          <% if scheme.private && !scheme.users.include?(current_user) && (!logged_in? || current_user.id != 1) %>
             <% display.delete scheme %>
           <% end %>
         <% end %>

@@ -22,7 +22,7 @@
                 <div class="panel-title">
                   <%= link_to user.name, user %>
                   <div class="pull-right">
-                  <% if user == current_user %>
+                  <% if user == current_user || (logged_in? && current_user.id == 1) %>
                     <%= link_to edit_user_path(user) do %>
                       <span class="glyphicon glyphicon-cog" aria-hidden="true" sr-only="edit user" data-toggle="tooltip" data-placement="top" title data-original-title="Edit account"></span>
                     <% end %>
