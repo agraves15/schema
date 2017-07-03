@@ -31,9 +31,6 @@ class SchemesController < ApplicationController
     (0..scheme_params[:colors_attributes].count - 1).each do |i|
       @scheme.add_color(scheme_params, i)
     end
-    # (0..scheme_params[:users_attributes].count - 1).each do |i|
-    #   @scheme.add_user(scheme_params, i)
-    # end
 
     respond_to do |format|
       if @scheme.save
@@ -55,6 +52,7 @@ class SchemesController < ApplicationController
   def update
     respond_to do |format|
       if @scheme.update(scheme_params)
+        @scheme.colors.sort
         format.html { redirect_to @scheme, notice: 'Color scheme was successfully updated.' }
         format.json { render :show, status: :ok, location: @scheme }
       else
