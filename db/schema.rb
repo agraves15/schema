@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -24,10 +23,9 @@ ActiveRecord::Schema.define(version: 20170424190524) do
     t.integer  "scheme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["color_id"], name: "index_colors_schemes_on_color_id"
+    t.index ["scheme_id"], name: "index_colors_schemes_on_scheme_id"
   end
-
-  add_index "colors_schemes", ["color_id"], name: "index_colors_schemes_on_color_id"
-  add_index "colors_schemes", ["scheme_id"], name: "index_colors_schemes_on_scheme_id"
 
   create_table "friendships", force: :cascade do |t|
     t.integer  "friendable_id"
@@ -52,10 +50,9 @@ ActiveRecord::Schema.define(version: 20170424190524) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["scheme_id"], name: "index_schemes_users_on_scheme_id"
+    t.index ["user_id"], name: "index_schemes_users_on_user_id"
   end
-
-  add_index "schemes_users", ["scheme_id"], name: "index_schemes_users_on_scheme_id"
-  add_index "schemes_users", ["user_id"], name: "index_schemes_users_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

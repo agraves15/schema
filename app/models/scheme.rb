@@ -1,4 +1,4 @@
-class Scheme < ActiveRecord::Base
+class Scheme < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :schemes_users, dependent: :destroy
   has_many :users, through: :schemes_users

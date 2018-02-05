@@ -1,6 +1,6 @@
 require 'bcrypt'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   validates :name, :email, :password_hash, presence: true
   validates :name, :email, uniqueness: true
   validates :password, confirmation: true
